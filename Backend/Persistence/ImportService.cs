@@ -1,12 +1,8 @@
 ﻿namespace Persistence;
 
 using Core.Contracts;
-using Core.Entities;
 
 using System.Threading.Tasks;
-using System.Linq;
-
-using Base.Tools.CsvImport;
 
 public class ImportService : IImportService
 {

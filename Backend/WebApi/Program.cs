@@ -5,7 +5,6 @@ using Keycloak.AuthServices.Authorization;
 using Keycloak.AuthServices.Common;
 
 using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -14,8 +13,9 @@ using Persistence;
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
+
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,7 +32,7 @@ services
     .AddAuthorization()
     .AddKeycloakAuthorization(configuration)
     .AddAuthorizationBuilder()
-    .AddPolicy("AdminAndUser", builder =>
+    .AddPolicy("AdminUser", builder =>
     {
         var keycloakOptions = configuration.GetKeycloakOptions<KeycloakAuthenticationOptions>()!;
 
@@ -99,7 +99,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services
     .AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(connectionString))
+        options.UseSqlite(connectionString))
     .AddScoped<IUnitOfWork, UnitOfWork>()
     .AddTransient<IMDemoRepository, MDemoRepository>()
     ;

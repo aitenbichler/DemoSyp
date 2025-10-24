@@ -26,7 +26,7 @@ void ConfigureDependencyInjector()
     AppService.ServiceCollection
         .AddSingleton(configuration)
         .AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(connectionString))
+            options.UseSqlite(connectionString))
         .AddScoped<IUnitOfWork, UnitOfWork>()
         .AddTransient<IMDemoRepository, MDemoRepository>()
         .AddTransient<IImportService, ImportService>()
@@ -35,14 +35,15 @@ void ConfigureDependencyInjector()
     AppService.BuildServiceProvider();
 }
 
+
 async Task RecreateDatabaseAsync()
 {
     Console.WriteLine("=====================");
     using (var scope = AppService.ServiceProvider!.CreateScope())
     {
         var uow = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
-        Console.WriteLine("Deleting database ...");
-        await uow.DeleteDatabaseAsync();
+         Console.WriteLine("Deleting database ...");
+         await uow.DeleteDatabaseAsync();
 
         Console.WriteLine("Recreating and migrating database ...");
         await uow.CreateDatabaseAsync();
