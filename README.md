@@ -1,0 +1,1 @@
+# Demo for SYP/ITP projects using c#, angular (>21), keycloak, leocloud
