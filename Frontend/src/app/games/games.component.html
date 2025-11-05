@@ -1,0 +1,34 @@
+<h2>Games</h2>
+
+<div class="container mt-3">
+
+    <h1>Games Overview</h1>
+
+    <button class="btn btn-info mb-3" (click)="addGame()">Add new Game</button>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Players</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (game of games; track game; let idx = $index) {
+            <tr>
+                <td>{{game.name}}</td>
+                <td>{{game.age}}</td>
+                <td>{{game.minPlayers}} - {{game.maxPlayers}}</td>
+                <td><button class="btn btn-info btn-sm" (click)="showDetail(game)">Detail</button></td>
+                <td><button class="btn btn-info btn-sm" (click)="editGame(game)">Edit</button></td>
+                <td><button class="btn btn-danger btn-sm" (click)="deleteGame(game)">Delete</button></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,25 @@
+<h2>Games</h2>
+
+@if (game != null) {
+
+    <div class="container mt-3">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td>{{game.name}}</td>
+                </tr>
+                <tr>
+                    <td>Age</td>
+                    <td>{{game.age}}</td>
+                </tr>
+                <tr>
+                    <td>Players</td>
+                    <td>{{game.minPlayers}} - {{game.maxPlayers}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+} @else {
+    <p>No game selected</p>
+}
