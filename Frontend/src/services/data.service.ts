@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Game } from '../models/game.model';
+import { MDemo, MDemoOverview } from '../models/mdemo.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,42 +14,40 @@ const httpOptions = {
 })
 export class DataService {
 
-private apiUrl = "https://h-aitenbichler.cloud.htl-leonding.ac.at/demosypapi";
-//private apiUrl = "/api";
+//private apiUrl = "https://h-aitenbichler.cloud.htl-leonding.ac.at/demosypapi";
+private apiUrl = "/api";
 // use /api to proxy requests => see proxy.conf.json 
 //                  to avoid CORS issues in development
 
   constructor(private http: HttpClient) { }
 
-  getGames() {
-    return this.http.get<Game[]>(`${this.apiUrl}/game`);
+  getMDemos() {
+    return this.http.get<MDemoOverview[]>(`${this.apiUrl}/demo`);
   }
   
-  getGame(id: number) {
-    return this.http.get<Game>(`${this.apiUrl}/game/${id}`);
+  getMDemo(id: number) {
+    return this.http.get<MDemo>(`${this.apiUrl}/demo/${id}`);
   }
 
-  updateGame(game: Game) {
-    const url = `${this.apiUrl}/game/${game.id}`;
+  updateMDemo(game: MDemo) {
+    const url = `${this.apiUrl}/demo/${game.id}`;
     return this.http.put(url, game);
   }
 
-  addGame(name: string, age: number, minPlayers: number|null, maxPlayers: number|null): Observable<Game> {
+  addMDemo(name: string, age: number, minPlayers: number|null, maxPlayers: number|null): Observable<MDemo> {
 
-    const url = `${this.apiUrl}/game`;
-    let createGameDto: Game = {
+    const url = `${this.apiUrl}/demo`;
+    let createMDemoDto: MDemo = {
       id: 0,
       name: name,
-      age: age,
-      minPlayers: minPlayers,
-      maxPlayers: maxPlayers,
+      fDemoId: 1
     };
 
-    return this.http.post<Game>(url, createGameDto);
+    return this.http.post<MDemo>(url, createMDemoDto);
   }  
 
-  deleteGame(id: number) {
-    const url = `${this.apiUrl}/game/${id}`;
+  deleteMDemo(id: number) {
+    const url = `${this.apiUrl}/demo/${id}`;
     return this.http.delete(url, { responseType: 'text' });
   }
 }

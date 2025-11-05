@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Component, OnInit, InputSignal, input, inject, effect } from '@angular/core';
-import { Game } from '../../models/game.model';
+import { MDemo } from '../../models/mdemo.model';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { DataService } from '../../services/data.service';
 })
 export class GameDetailComponent {
 
-  game: Game | undefined;
+  game: MDemo | undefined;
   id: InputSignal<number | undefined> = input();
 
   private dataService = inject(DataService);
@@ -27,7 +27,7 @@ export class GameDetailComponent {
   }
 
   load(): void {
-    this.dataService.getGame(this.id()!).subscribe({
+    this.dataService.getMDemo(this.id()!).subscribe({
       next: data => {
         this.game = data;
       },

@@ -31,12 +31,9 @@ export class GameUpdateComponent {
   }
 
   load() {
-    this.dataService.getGame(this.gameIdVal).subscribe({
+    this.dataService.getMDemo(this.gameIdVal).subscribe({
       next: data => {
         this.gameNameVal = data.name;
-        this.gameAgeVal = data.age;
-        this.gameMaxPlayerVal = data.maxPlayers;
-        this.gameMinPlayerVal = data.minPlayers;
 
       },
       error: error => {
@@ -46,12 +43,10 @@ export class GameUpdateComponent {
   }
 
   onUpdateGame() {
-    this.dataService.updateGame({
+    this.dataService.updateMDemo({
       id: this.gameIdVal,
       name: this.gameNameVal!,
-      age: this.gameAgeVal!,
-      minPlayers: this.gameMinPlayerVal,
-      maxPlayers: this.gameMaxPlayerVal
+      fDemoId: 1
     }).subscribe({
       next: () => {
         this.router.navigate(['/games']);

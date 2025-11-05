@@ -3,18 +3,18 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { Component, OnInit, inject } from '@angular/core';
-import { Game } from '../../models/game.model';
+import { MDemo } from '../../models/mdemo.model';
 import { DataService } from '../../services/data.service';
 
 @Component({
-  selector: 'app-game.add',
-  templateUrl: './game.add.component.html',
-  styleUrls: ['./game.add.component.css'],
+  selector: 'app-mdemo.add',
+  templateUrl: './mdemo.add.component.html',
+  styleUrls: ['./mdemo.add.component.css'],
   imports: [CommonModule, FormsModule],
 })
-export class GameAddComponent implements OnInit {
+export class MDemoAddComponent implements OnInit {
 
-  gameNameVal: string = '';
+  mDemoNameVal: string = '';
   ageVal: number | undefined;
   minPlayersVal: number | null = null;
   maxPlayersVal: number | null = null;
@@ -26,20 +26,18 @@ export class GameAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('GameDetailComponent initialized');
+    console.log('MDemoDetailComponent initialized');
   }
 
-  onAddGame(): void {
-    this.dataService.addGame(this.gameNameVal, this.ageVal!, this.minPlayersVal, this.maxPlayersVal).subscribe({
+  onAddMDemo(): void {
+    this.dataService.addMDemo(this.mDemoNameVal, this.ageVal!, this.minPlayersVal, this.maxPlayersVal).subscribe({
       next: (data) => {
-        this.router.navigate(['/games']);
+        this.router.navigate(['/demos']);
       },
       error: (error) => {
         console.log(error);
-        alert('Create game failed');
+        alert('Create mDemo failed');
       }
     });
   }
 }
-
-

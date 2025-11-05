@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://h-aitenbichler.cloud.htl-leonding.ac.at/backendkeycloakdemo",
+    "target": "https://h-aitenbichler.cloud.htl-leonding.ac.at/demosypapi",
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": {
