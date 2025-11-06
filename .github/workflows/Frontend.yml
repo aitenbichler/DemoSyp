@@ -1,5 +1,5 @@
 
-name: Serial.Server Docker (for Raspberry/Linux)
+name: Frontend(DemoSyp) Docker (for LeoCloud)
 
 env:
   ContainerName: demosypui                       # Name of he (docker-)container
