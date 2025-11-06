@@ -1,7 +1,7 @@
 # Demo for SYP/ITP projects using 
 
 ## c#
-## angular (>21)
+## angular (>18)
 ## keycloak
 ## leocloud
 ## github action
