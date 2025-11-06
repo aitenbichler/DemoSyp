@@ -34,8 +34,8 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           #context: "{{defaultContext}}:Src"
-          context: ./Src
-          file: ./Src/Serial.Server/Dockerfile
+          context: ./Frontend
+          file: ./Frontend/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.ContainerName}}:latest
           
