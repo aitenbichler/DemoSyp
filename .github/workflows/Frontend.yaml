@@ -5,7 +5,7 @@ env:
   ContainerName: demosypui                       # Name of he (docker-)container
   SolutionPath: Frontend                         # sub-directory of sln file location
   CloudNameSpace: student-h-aitenbichler
-  AppPrefix: demosypapi
+  AppPrefix: demosypui
 
 on:
   push:
