@@ -76,6 +76,6 @@ jobs:
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
-          args: create -f ./LeoCloud/frontend-leocloud-student-h-aitenbichler-demosysui.yaml
+          args: create -f ./LeoCloud/frontend--leocloud-${{ env.CloudNameSpace}}-${{ env.AppPrefix}}.yaml
 
           
