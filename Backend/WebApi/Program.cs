@@ -17,6 +17,7 @@ using System.IO;
 
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 Environment.SetEnvironmentVariable("DOTNET_hostBuilder:reloadConfigOnChange", "false");
 var builder = WebApplication.CreateBuilder(args);
@@ -126,6 +127,7 @@ app.MapControllers();
     {
         options.PreSerializeFilters.Add((doc, request) =>
         {
+            app.Logger.LogWarning($"Request: {request.Host.Value!} - {request.Path.Value!} - {request.PathBase.Value!}");
             if (request.Host.Value!.Contains(".cloud.htl-leonding.ac.at"))
             {
                 doc.Servers = new List<OpenApiServer>
