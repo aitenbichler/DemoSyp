@@ -15,6 +15,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
+using Base.Web;
+
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -127,7 +129,7 @@ app.MapControllers();
     {
         options.PreSerializeFilters.Add((doc, request) =>
         {
-            app.Logger.LogWarning($"Request: {request.ToString()}");
+            app.Logger.LogWarning($"Request: {request.GetCurrentUri()}");
             app.Logger.LogWarning($"Request: {request.Host.Value!} - {request.Path.Value!} - {request.PathBase.Value!}");
             if (request.Host.Value!.Contains(".cloud.htl-leonding.ac.at"))
             {
