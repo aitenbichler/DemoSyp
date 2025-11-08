@@ -129,13 +129,19 @@ app.MapControllers();
     {
         options.PreSerializeFilters.Add((doc, request) =>
         {
-            app.Logger.LogWarning($"Request: {request.GetCurrentUri()}");
-            app.Logger.LogWarning($"Request: {request.Host.Value!} - {request.Path.Value!} - {request.PathBase.Value!}");
             if (request.Host.Value!.Contains(".cloud.htl-leonding.ac.at"))
             {
+                // leocloud is using path based routing for different apps on the same domain => XXX.cloud.htl-leonding.ac.at/demosypapi
+                // nginx is forwarding the requests to our application but removes the path part "/demosypapi"
+                // we have to adjust the server url in swagger documentation accordingly
+
+                // we use hostname to find the correct server url => hostname is in the format e.g. "demosypapi-79686ccb6c-6g26k"
+                var fullhostname = System.Net.Dns.GetHostEntry("").HostName;
+                var hostname     = fullhostname.Split('-')[0];
+
                 doc.Servers = new List<OpenApiServer>
                 {
-                    new OpenApiServer { Url = $"{request.Scheme}s://{request.Host.Value}/demosypapi" } // Add the custom postfix here
+                    new OpenApiServer { Url = $"{request.Scheme}s://{request.Host.Value}/{hostname}" } 
                 };
             }
         });
