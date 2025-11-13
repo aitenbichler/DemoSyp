@@ -14,10 +14,7 @@ const httpOptions = {
 })
 export class DataService {
 
-private apiUrl = "https://h-aitenbichler.cloud.htl-leonding.ac.at/demosypapi";
-//private apiUrl = "/api";
-// use /api to proxy requests => see proxy.conf.json 
-//                  to avoid CORS issues in development
+  private apiUrl = "/api";  // will be replaced by environment variable
 
   constructor(private http: HttpClient) { 
     this.apiUrl = environment.apiUrl;
@@ -33,7 +30,6 @@ private apiUrl = "https://h-aitenbichler.cloud.htl-leonding.ac.at/demosypapi";
   }
 
   updateMDemo(mdemo: MDemo) {
-    console.log("Updating MDemo: ", mdemo);
     const url = `${this.apiUrl}/demo/${mdemo.id}`;
     return this.http.put(url, mdemo);
   }
